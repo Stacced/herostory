@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Maven+Pro|Nanum+Gothic');
+@import url('https://fonts.googleapis.com/css?family=Maven+Pro|Nanum+Gothic|Raleway');
 
 body {
     margin: 0;
@@ -11,6 +11,7 @@ body {
     border-radius: 5px;
     
     width: 50%;
+    min-width: 400px;
     height: auto;
     margin: auto;
     padding: 5px;
@@ -23,4 +24,10 @@ img {
     height: 400px;
     width: 400px;
     border-radius: 5px;
+}
+
+#idImgContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
