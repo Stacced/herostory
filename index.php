@@ -32,10 +32,10 @@ $historyTexts = array( // Struct => array(
         ],
 
     "trottinette" => [ "Vous avez pris la trottinette", "Vous vous apercevez que celle-ci est en train de s'endommager au fur et à mesure que vous l'utilisez.",
-            "img/continue.jpg", "img/walk.jpg", "Vous continuez", "Vous abandonnez la trottinette et continuez à pied", "continue", "reparer"
+            "img/continue.jpg", "img/walk.jpg", "Vous continuez", "Vous abandonnez la trottinette et continuez à pied", "continuetrot", "reparer"
         ],
 
-    "continue" => [ "La trottinette casse", "Ce que vous attendiez arriva : la trottinette casse, et un bout de métal vous blesse au ventre. Vous saignez abondamment",
+    "continuetrot" => [ "La trottinette casse", "Ce que vous attendiez arriva : la trottinette casse, et un bout de métal vous blesse au ventre. Vous saignez abondamment",
             "img/wait.jpg", "img/walk.jpg", "Vous attendez en espérant que quelqu'un passe", "Vous marchez le reste du chemin", "wait", "pied"
         ],
 
@@ -43,7 +43,25 @@ $historyTexts = array( // Struct => array(
         ],
 
     "tunnel" => [ "Vous êtes entré dans le tunnel", "Après quelques minutes de marche, vous rencontrez votre premier obstacle : le tunnel se sépare en deux chemins."
-        . " Lequel choisissez-vous ?", "" ]
+        . " Lequel choisissez-vous ?", "img/left.png", "img/right.png", "Vous prenez le chemin de gauche", "Vous prenez le chemin de droite", "leftpath", "rightpath"
+        ],
+    
+    "leftpath" => [ "Vous avez pris le chemin de gauche", "En marchant le long du chemin, vous remarquez une ouverture, assez grande pour que vous puissiez vous y glisser."
+        . " Il semble y avoir de la lumière au bout. Que faites-vous ?", "img/opening.jpg", "img/continue.jpg", "Vous rentrez dans l'ouverture", "Vous continuez votre chemin",
+        "opening", "continuewalk"
+        ],
+    
+    "opening" => [ "Vous êtes écrasé par une roche !", "Et oui, en marchant dans cet espace étroit, vous déstabilisez la structure et une roche vous écrase... c'est dommage", null, null, null, null, null, null
+        ],
+    
+    "continuewalk" => ["Vous avez réussi !", "Après avoir marché 30 minutes, vous arrivez à trouver la sortie. Bien joué !", null, null, null, null, null, null
+        ],
+    
+    "rightpath" => [ "Vous avez pris le chemin de droite", "Vous voyez soudain un chemin avec de la lumière émanant au bout. Que faites-vous ?", "img/shortcut.jpg", "img/continue.jpg",
+        "Vous prenez le raccourci", "Vous continuez votre chemin", "bear", "continuewalk"
+        ],
+    
+    "bear" => [ "Vous sortez de la grotte mais...", "Vous vous faites manger par un ours qui était à proximité de la sortie. C'est dommage :p", null, null, null, null, null, null ]
 );
 
 if (!isset($historyStep) && !isset($historyValidate)) {
@@ -72,7 +90,6 @@ $rightChoice = $historyTexts[$historyStep][7];
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
-    <?= GenerateHeader() ?>
     <body>
         <div id="idQuestion">
             <h2><?= $questionHeaderText ?></h2>
@@ -81,8 +98,8 @@ $rightChoice = $historyTexts[$historyStep][7];
                 <?php
                 if (isset($leftImage) && isset($rightImage)) {
                     echo "<div id='idImgContainer'>";
-                    echo "<img src='$leftImage' alt='left image'>";
-                    echo "<img src='$rightImage' alt='right image'>";
+                    echo "<img id='id$leftImage' src='$leftImage' alt='$leftImage'>";
+                    echo "<img id='id$rightImage' src='$rightImage' alt='$rightImage'>";
                     echo "</div>";
                     echo "<br>";
 
